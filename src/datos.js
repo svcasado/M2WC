@@ -1,7 +1,6 @@
 export function prepararSeries(resultados) {
   return resultados.map(({ show }) => {
     return {
-      id: show.id,
       nombre: show.name ?? "Sin título",
       imagen: show.image?.medium ?? null,
       nota: show.rating?.average ?? null,
