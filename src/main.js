@@ -1,14 +1,32 @@
-import "./style.css";
 import { buscarSeries } from "./api.js";
 import { prepararSeries, ordenarPorNota, contarGeneros } from "./datos.js";
+import { mostrarCargando, mostrarError, mostrarVacio, mostrarSeries } from "./ui.js";
 
-async function probar() {
+const campoBusqueda = document.querySelector("#busqueda");
+const botonBuscar = document.querySelector("#boton-buscar");
+
+async function buscar() {
+  const texto = campoBusqueda.value.trim();
+
+  if (texto === "") {
+    return;
+  }
+
+  mostrarCargando();
+
   try {
-    const resultados = await buscarSeries("office");
+    const resultados = await buscarSeries(texto);
     const series = ordenarPorNota(prepararSeries(resultados));
-    console.log(series);
-    console.log(contarGeneros(series));
+
+    if (series.length === 0) {
+      mostrarVacio(texto);
+      return;
+    }
+
+    mostrarSeries(series, contarGeneros(series));
   } catch (error) {
-    console.error("Error:", error.message);
+    mostrarError(error.message);
   }
 }
+
+botonBuscar.addEventListener("click", buscar);

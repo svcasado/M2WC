@@ -4,13 +4,24 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>M2WC</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <title>Buscador de series</title>
   </head>
   <body>
     <header>
-      <h1>M2WC</h1>
+      <h1>Buscador de series</h1>
+      <div class="buscador">
+        <label for="busqueda">Nombre de la serie</label>
+        <input id="busqueda" type="text" placeholder="Por ejemplo: The Office" />
+        <button id="boton-buscar" type="button">Buscar</button>
+      </div>
     </header>
-    <main id="app"></main>
+    <main>
+      <p id="estado"></p>
+      <p id="error"></p>
+      <p id="resumen"></p>
+      <div id="resultados"></div>
+    </main>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
